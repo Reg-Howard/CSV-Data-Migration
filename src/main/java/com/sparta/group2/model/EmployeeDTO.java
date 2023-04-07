@@ -1,12 +1,9 @@
 package com.sparta.group2.model;
 
 import java.time.LocalDate;
+
 public class EmployeeDTO {
 
-//    public String rawData;// make this private after testing
-//    public EmployeeDTO(String rawData) {
-//        this.rawData = rawData;
-//    }
     private int id;
     private String prefix;
     private String firstName;
