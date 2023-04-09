@@ -3,6 +3,7 @@ package com.sparta.group2.model.factory;
 import com.sparta.group2.model.EmployeeDTO;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EmployeeFactory {
 
@@ -16,7 +17,7 @@ public class EmployeeFactory {
         if(splitInput.length != 10){
             return null;
         }
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         int id = ParsingFactory.toInt(splitInput[0]);
         String prefix = splitInput[1];
         String firstName = splitInput[2];
@@ -24,8 +25,10 @@ public class EmployeeFactory {
         String lastName = splitInput[4];
         String gender = splitInput[5];
         String mail = splitInput[6];
-        LocalDate dob = ParsingFactory.toDate(splitInput[7]);
-        LocalDate startDate = ParsingFactory.toDate(splitInput[8]);
+        LocalDate dob = LocalDate.parse(splitInput[7], formatter);
+        LocalDate startDate = LocalDate.parse(splitInput[8], formatter);
+//        LocalDate dob = ParsingFactory.toDate(splitInput[7]);
+//        LocalDate startDate = ParsingFactory.toDate(splitInput[8]);
         double salary = ParsingFactory.toInt(splitInput[9]);
 
         return new EmployeeDTO(id,prefix,firstName,middleInitial,lastName,gender,mail,dob,startDate,salary);
