@@ -189,7 +189,7 @@ public class FileReaderChecks {
         assertEquals("I",dummyEmployeeDTO2.getMiddleInitial());
         assertEquals("Bumgarner",dummyEmployeeDTO2.getLastName());
         assertEquals("F",dummyEmployeeDTO2.getGender());
-        assertEquals("serafina.bumgarner@exxonmobil.com",dummyEmployeeDTO2.geteMail());
+        assertEquals("serafina.bumgarner@exxonmobil.com",dummyEmployeeDTO2.getMail());
         assertEquals(LocalDate.of(1982,9,21),dummyEmployeeDTO2.getDob());
         assertEquals(LocalDate.of(2008,2,1),dummyEmployeeDTO2.getStartDate());
         assertEquals(69294,dummyEmployeeDTO2.getSalary());
