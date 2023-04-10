@@ -4,13 +4,13 @@ import com.sparta.group2.controller.EmployeeStorageServiceInterface;
 import com.sparta.group2.controller.EmployeeStorageInterface;
 import com.sparta.group2.model.EmployeeDTO;
 import com.sparta.group2.model.factory.EmployeeFactory;
-import com.sparta.group2.model.factory.FileReader;
+import com.sparta.group2.model.factory.FileDataReader;
 
 public class EmployeeStorageService implements EmployeeStorageServiceInterface {
   //gets data from factory
   @Override
   public void getFromFactory() {
-    String result[] = FileReader.readFileLines("src/main/resources/EmployeeRecords.csv");
+    String result[] = FileDataReader.readFileLines("src/main/resources/EmployeeRecords.csv");
     EmployeeDTO temp;
     for(String data: result){
       temp = EmployeeFactory.createEmployee(data);

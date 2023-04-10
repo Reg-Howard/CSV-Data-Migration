@@ -26,14 +26,15 @@ public class SQLModelTests {
         when(dao.findById(123)).thenReturn(employeeDTO);
         assertEquals(123,employeeDTO.getId());
     }
-    
+
     @Test
-    @DisplayName("Test finding all Employees")
+    @Order(2)
+    @DisplayName("2. Test finding all Employees")
     void testFindingAllEmployees() {
-        EmployeeDTO employeeDTO= mock(EmployeeDTO.class);
-        EmployeeDTO employeeDTO2= mock(EmployeeDTO.class);
-        EmployeeDTO employeeDTO3= mock(EmployeeDTO.class);
-        EmployeeDTO employeeDTO4= mock(EmployeeDTO.class);
+        EmployeeDTO employeeDTO = mock(EmployeeDTO.class);
+        EmployeeDTO employeeDTO2 = mock(EmployeeDTO.class);
+        EmployeeDTO employeeDTO3 = mock(EmployeeDTO.class);
+        EmployeeDTO employeeDTO4 = mock(EmployeeDTO.class);
 
         List<EmployeeDTO> employeeDTOS = new ArrayList<>();
         employeeDTOS.add(employeeDTO);
@@ -42,6 +43,15 @@ public class SQLModelTests {
         employeeDTOS.add(employeeDTO4);
 
         when(dao.findAll()).thenReturn(employeeDTOS);
-        }
-    
+        Assertions.assertEquals(4, dao.findAll().size());
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("3. Test inserting Employee to DB")
+    void testInsertingEmployeeToDB() {
+        EmployeeDTO employeeDTO = mock(EmployeeDTO.class);
+        dao.insert(employeeDTO);
+        assertEquals(1, dao.findAll().size());
+    }
 }
