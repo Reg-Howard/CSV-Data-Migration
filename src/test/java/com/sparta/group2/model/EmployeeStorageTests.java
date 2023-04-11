@@ -23,6 +23,7 @@ import java.util.HashMap;
 public class EmployeeStorageTests {
   static EmployeeDTO emp1, emp2;
   static EmployeeStorageInterface employeeStorageInterface;
+  static EmployeeStorageServiceInterface employeeStorageServiceInterface;
   @BeforeAll
   static void setup() {
 
@@ -37,6 +38,9 @@ public class EmployeeStorageTests {
     employeeStorageInterface.addUncleanItem(emp2);
 
     employeeStorageInterface.addCleanItem(emp1);
+
+    employeeStorageServiceInterface = new EmployeeStorageService();
+
   }
 
   @Test
@@ -57,10 +61,9 @@ public class EmployeeStorageTests {
     verify(mockes).addCleanItem(mockDTO);
     verify(mockes).addUncleanItem(mockDTO);
 
-    mockESSI.getFromFactory();
+
     mockESSI.insertIntoList(mockDTO);
 
-    verify(mockESSI).getFromFactory();
     verify(mockESSI).insertIntoList(mockDTO);
   }
 
@@ -78,14 +81,14 @@ public class EmployeeStorageTests {
   void testEmployeeStorageAddToCleanList(){
 
 
-    Assertions.assertEquals(emp1.hashCode(), employeeStorageInterface.getCleanList().get(emp1.getId()).hashCode());
+    Assertions.assertEquals(emp1.hashCode(), employeeStorageInterface.getCleanList().get(emp1.hashCode()).hashCode());
   }
 
   @Test
   @Order(4)
   void testEmployeeStorageAddToUncleanList(){
 
-    Assertions.assertEquals(emp2.hashCode(), employeeStorageInterface.getUncleanList().get(emp2.getId()).hashCode());
+    Assertions.assertEquals(emp2.hashCode(), employeeStorageInterface.getUncleanList().get(emp2.hashCode()).hashCode());
   }
   @Test
   @Order(5)
@@ -97,8 +100,8 @@ public class EmployeeStorageTests {
   @Test
   @Order(6)
   void testStorageServiceGettingDataFromFactory(){
-    EmployeeStorageServiceInterface employeeStorageServiceInterface = new EmployeeStorageService();
     employeeStorageServiceInterface.getFromFactory();
+
     int totalEntries = 10002;
     Assertions.assertEquals(totalEntries, employeeStorageInterface.getCleanList().size() + employeeStorageInterface.getUncleanList().size());
   }
@@ -108,7 +111,7 @@ public class EmployeeStorageTests {
   void testEmployeeStorageCleanList() {
     EmployeeDTO emp3 = EmployeeFactory.createEmployee(
         "198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,01/02/2008,69294");
-    Assertions.assertEquals(emp3.toString(), employeeStorageInterface.getCleanList().get(emp1.getId()).toString());
+    Assertions.assertEquals(emp3.toString(), employeeStorageInterface.getCleanList().get(emp1.hashCode()).toString());
 
   }
 
@@ -117,7 +120,7 @@ public class EmployeeStorageTests {
   void testEmployeeStorageUncleanList(){
     EmployeeDTO emp4 = EmployeeFactory.createEmployee(
         "111111,Mrs.,Serafina,FALSE,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,01/02/2008,69294");
-    Assertions.assertEquals(emp4.toString(), employeeStorageInterface.getUncleanList().get(emp2.getId()).toString());
+    Assertions.assertEquals(emp4.toString(), employeeStorageInterface.getUncleanList().get(emp2.hashCode()).toString());
   }
 
 
@@ -134,7 +137,7 @@ public class EmployeeStorageTests {
     EmployeeDTO emp5 = EmployeeFactory.createEmployee(
         "198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,01/02/2008,69294");
     Assertions.assertTrue(
-        emp5.equals(employeeStorageInterface.getCleanList().get(emp1.getId())));
+        emp5.equals(employeeStorageInterface.getCleanList().get(emp1.hashCode())));
 
   }
 
@@ -149,8 +152,8 @@ public class EmployeeStorageTests {
     employeeStorageServiceInterface.insertIntoList(emp6);
     employeeStorageServiceInterface.insertIntoList(emp7);
 
-    Assertions.assertEquals(emp6.getId(), employeeStorageInterface.getUncleanList().get(emp6.getId()).getId());
-    Assertions.assertEquals(emp7.getId(), employeeStorageInterface.getCleanList().get(emp7.getId()).getId());
+    Assertions.assertEquals(emp6.getId(), employeeStorageInterface.getUncleanList().get(emp6.hashCode()).getId());
+    Assertions.assertEquals(emp7.getId(), employeeStorageInterface.getCleanList().get(emp7.hashCode()).getId());
   }
 
 

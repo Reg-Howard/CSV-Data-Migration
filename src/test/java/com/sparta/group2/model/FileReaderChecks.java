@@ -36,7 +36,7 @@ public class FileReaderChecks {
         //Arrange
         // List<String> items = new ArrayList<>(); - Being carried out globally
         //Act
-        employeeRawData = List.of(FileReader.readFileLines("src/main/resources/EmployeeRecords.csv"));
+        EmployeeDTO temp = EmployeeFactory.createEmployee("133641,Mr.,Chas,F,Hurdle,M,chas.hurdle@gmail.com,20/04/1995,28/05/2016,45102");
         //Assert
         assertEquals("198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,01/02/2008,69294", employeeRawData.get(0));
     }
@@ -46,7 +46,7 @@ public class FileReaderChecks {
         //Arrange
         // List<String> items = new ArrayList<>(); - Being carried out globally
         //Act
-        employeeRawData = List.of(FileReader.readFileLines("src/main/resources/EmployeeRecords.csv"));
+        EmployeeDTO temp = EmployeeFactory.createEmployee("133641,Mr.,Chas,F,Hurdle,M,chas.hurdle@gmail.com,20/04/1995,28/05/2016,45102");
         //Assert
         assertEquals("133641,Mr.,Chas,F,Hurdle,M,chas.hurdle@gmail.com,20/04/1995,28/05/2016,45102", employeeRawData.get(9999));
     }
@@ -54,9 +54,9 @@ public class FileReaderChecks {
     @DisplayName("Check split method has returned the expected number of strings")
     void checkSplitMethodHasReturnedTheExpectedNumberOfStrings() {
         //Arrange
-        employeeRawData = List.of(FileReader.readFileLines("src/main/resources/EmployeeRecords.csv"));
+        EmployeeDTO temp = EmployeeFactory.createEmployee("198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,01/02/2008,69294");
         //Act
-        splitDummyEmployeeDTO = employeeRawData.get(0).split(",");
+        splitDummyEmployeeDTO = temp.toString().split(",");
         //Assert
         if (stringList.length != splitDummyEmployeeDTO.length){
             Assertions.fail();

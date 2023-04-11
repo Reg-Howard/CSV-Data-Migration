@@ -1,6 +1,7 @@
 package com.sparta.group2.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class EmployeeDTO {
@@ -111,19 +112,20 @@ public class EmployeeDTO {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", prefix='" + prefix + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", middleInitial='" + middleInitial + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", mail='" + mail + '\'' +
-                ", dob=" + dob +
-                ", startDate=" + startDate +
-                ", salary=" + salary +
-                '}';
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return
+                "" + id +
+                "," + prefix +
+                "," + firstName +
+                "," + middleInitial +
+                "," + lastName +
+                "," + gender +
+                "," + mail +
+                "," + dob.format(formatter) +
+                "," + startDate.format(formatter) +
+                "," + (int)salary ;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -136,9 +138,6 @@ public class EmployeeDTO {
 
         EmployeeDTO that = (EmployeeDTO) o;
 
-        if (id != that.id) {
-            return false;
-        }
         if (Double.compare(that.salary, salary) != 0) {
             return false;
         }
@@ -168,19 +167,6 @@ public class EmployeeDTO {
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + (prefix != null ? prefix.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (middleInitial != null ? middleInitial.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (mail != null ? mail.hashCode() : 0);
-        result = 31 * result + (dob != null ? dob.hashCode() : 0);
-        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
-        temp = Double.doubleToLongBits(salary);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        return id;
     }
 }
