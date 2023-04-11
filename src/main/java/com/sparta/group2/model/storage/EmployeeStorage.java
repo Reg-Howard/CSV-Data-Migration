@@ -37,10 +37,10 @@ public class EmployeeStorage implements EmployeeStorageInterface {
   }
   @Override
   public void addCleanItem(EmployeeDTO item){
-    cleanList.put(item.hashCode(), item);
+    cleanList.put(item.getId(), item);
   }
   @Override
   public void addUncleanItem(EmployeeDTO item){
-    uncleanList.put(item.hashCode(), item);
+    uncleanList.put(item.getId(), item);
   }
 }

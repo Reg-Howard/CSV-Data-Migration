@@ -3,7 +3,7 @@ package com.sparta.group2;
 import com.sparta.group2.controller.EmployeeStorageServiceInterface;
 import com.sparta.group2.controller.EmployeeStorageStarter;
 import com.sparta.group2.model.EmployeeDTO;
-import com.sparta.group2.model.factory.FileReader;
+import com.sparta.group2.model.factory.FileDataReader;
 import com.sparta.group2.model.storage.EmployeeStorage;
 import com.sparta.group2.model.storage.EmployeeStorageService;
 
@@ -22,9 +22,8 @@ public class Main {
 //        System.out.println("--------------CLEAN DATA--------------");
 //        System.out.println();
 //        System.out.println();
-       EmployeeStorage.getStorage().getCleanList().forEach((integer, employeeDTO) -> System.out.println(employeeDTO.toString()));
-        long end1 = System.nanoTime();
-        System.out.println("Elapsed Time in seconds: 0."+ (end1-start1) );
+// EmployeeStorage.getStorage().getCleanList().forEach((integer, employeeDTO) -> System.out.println(employeeDTO.toString()));
+
 //        System.out.println();
 //        System.out.println();
 //
@@ -35,10 +34,12 @@ public class Main {
 //
 //        System.out.println();
 //        System.out.println();
-//
-//        System.out.println("Size of clean data: " + cleanList.size());
-//        System.out.println("Size of unclean data: " + uncleanList.size());
 
+        System.out.println("Size of clean data: " + EmployeeStorage.getStorage().getCleanList().size());
+        System.out.println("Size of unclean data: " + EmployeeStorage.getStorage().getUncleanList().size());
+      long end1 = System.nanoTime();
+
+        System.out.println("Time taken: " + (end1 - start1));
 
     }
 }
