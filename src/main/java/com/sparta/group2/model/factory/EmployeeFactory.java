@@ -17,9 +17,15 @@ public class EmployeeFactory {
         if(splitInput.length != 10){
             return null;
         }
+<<<<<<< HEAD
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
        // int id = ParsingFactory.toInt(splitInput[0]);
         int id = Integer.parseInt(splitInput[0]);
+=======
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        int id = Integer.parseInt(splitInput[0]);
+//        int id = ParsingFactory.toInt(splitInput[0]);         These 4 commented lines relate to the ParsingFactory.
+>>>>>>> dev
         String prefix = splitInput[1];
         String firstName = splitInput[2];
         String middleInitial = splitInput[3];
@@ -28,10 +34,17 @@ public class EmployeeFactory {
         String mail = splitInput[6];
         LocalDate dob = LocalDate.parse(splitInput[7], formatter);
         LocalDate startDate = LocalDate.parse(splitInput[8], formatter);
+<<<<<<< HEAD
 //      LocalDate dob = ParsingFactory.toDate(splitInput[7]);
 //      LocalDate startDate = ParsingFactory.toDate(splitInput[8]);
         double salary = Double.parseDouble(splitInput[9]);
 
+=======
+//        LocalDate dob = ParsingFactory.toDate(splitInput[7]);
+//        LocalDate startDate = ParsingFactory.toDate(splitInput[8]);
+        double salary = Integer.parseInt(splitInput[9]);
+//        double salary = ParsingFactory.toInt(splitInput[9]);
+>>>>>>> dev
         return new EmployeeDTO(id,prefix,firstName,middleInitial,lastName,gender,mail,dob,startDate,salary);
     }
 }

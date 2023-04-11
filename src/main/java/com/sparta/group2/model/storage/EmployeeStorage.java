@@ -43,6 +43,4 @@ public class EmployeeStorage implements EmployeeStorageInterface {
   public void addUncleanItem(EmployeeDTO item){
     uncleanList.put(item.hashCode(), item);
   }
-
-
 }
