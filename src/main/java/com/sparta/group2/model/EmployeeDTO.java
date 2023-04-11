@@ -138,6 +138,9 @@ public class EmployeeDTO {
 
         EmployeeDTO that = (EmployeeDTO) o;
 
+        if (id != that.id) {
+            return false;
+        }
         if (Double.compare(that.salary, salary) != 0) {
             return false;
         }
