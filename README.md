@@ -10,7 +10,7 @@ We've built an application that enables a user to input a csv file containing a 
 * Used the singleton pattern
 * Use a factory design pattern for Employees
 * Utilised Java 8+ functional programming features
-* Etc etc etc **(USE THE GENERAL REQUIREMENTS TO HELP)**
+* Using try-with-resources to ensure connections are closed
 
 ## User Stories
 
@@ -80,7 +80,7 @@ To get started with this project, follow these steps:
 
 ## Our Process
 
-This project was completed over 3 - 5 days. We were given a specification which we used to create user stories. From the user stories, we used a Jira board to plot our product backlog items. We then used TDD and pair programming to continually develop features. During our 3 - 5 day sprint, we met in the afternoon to discuss current progress and then we would collectively assign programming-pairs to their backlog tickets. We ended our sessions with retros to talk about any blockers, update the Kanban board and to delegate tasks for the next day.
+This project was completed over 3 - 5 days. We were given general requirements  which we used to create user stories. From the user stories, we used a Jira board to plot our product backlog items. We then used TDD and pair programming to continually develop features. During the sprint, we met in the afternoon to discuss current progress and then we would collectively assign programming-pairs to their backlog tickets. We ended our sessions with retros to talk about any blockers, update the Kanban board and to delegate tasks for the next day.
 
 The project aims to apply SOLID and OOP principles, use the MVC pattern where appropriate, and well-known design patterns. We developed the application in a TDD approach(JUnit). We used log4j2 for appropriate runtime logging and applied exception handling where applicable.
 
@@ -89,6 +89,16 @@ The project aims to apply SOLID and OOP principles, use the MVC pattern where ap
 When picking a single employee record through the CLI. We should throw an error if the employee record picked belongs to the unclean data.
 
 ## Program Notes
+
+### Useful Methods
+
+**Getters and setters:**
+- (get/set)EmpNo;
+- (get/set)BirthDate;
+- (get/set)FirstName;
+- (get/set)LastName;
+- (get/set)Gender;
+- (get/set)HireDate;
 
 <!-- 
 **Convert Employee Object to a String:**
@@ -121,6 +131,16 @@ When picking a single employee record through the CLI. We should throw an error 
    - `employeeStorage.getEmployeeList();` - Returns a list of employee objects
    - `employeeStorage.getEmployeeFromList(n);` - Returns a single employee object -->
 
+## Contributors
+
+* @Name-taken23 // Scrum Master
+* @ells101
+* @Reg-Howard // Github Lead
+* @HamzaKazi
+* @MarcinJakobik
+* @bakar212
+* @usmanrizwan1
+
 ### EMployee Objects Useful Methods
 
 **Getters and setters:**
@@ -131,16 +151,6 @@ When picking a single employee record through the CLI. We should throw an error 
 * (get/set)LastName;
 * (get/set)Mail;
 * (get/set)DOB;
-
-## Contributors
-
-* @ells101
-* @Reg-Howard
-* @Name-taken23
-* @HamzaKazi
-* @MarcinJakobik
-* @bakar212
-* @usmanrizwan1
 
 ## License
 
