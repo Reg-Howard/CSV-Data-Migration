@@ -1,14 +1,18 @@
 package com.sparta.group2.model.sql;
 
+import com.sparta.group2.Main;
 import com.sparta.group2.controller.InterfaceDAO;
 import com.sparta.group2.model.EmployeeDTO;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DAO implements InterfaceDAO<EmployeeDTO> {
-
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
     private static final String selectAllEmployees = "SELECT * FROM employees";
 
     private static final String selectAnEmployee = "SELECT * FROM employees WHERE id=?";
@@ -19,6 +23,25 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
 
     public void batchInsert(List<EmployeeDTO> employeeDTO){
         try(PreparedStatement preparedStatement = connection.prepareStatement(insertAnEmployee)){
+//            employeeDTO.forEach(emp -> {
+//                try {
+//                    preparedStatement.setInt(1,emp.getId());
+//                    preparedStatement.setString(2,emp.getPrefix());
+//                    preparedStatement.setString(3,emp.getFirstName());
+//                    preparedStatement.setString(4,emp.getMiddleInitial());
+//                    preparedStatement.setString(5,emp.getLastName());
+//                    preparedStatement.setString(6,emp.getGender());
+//                    preparedStatement.setString(7,emp.getMail());
+//                    preparedStatement.setDate(8, Date.valueOf(emp.getDob())); //.toString() if not working
+//                    preparedStatement.setDate(9,Date.valueOf(emp.getStartDate()));    //same
+//                    preparedStatement.setDouble(10,emp.getSalary());
+//                    preparedStatement.addBatch();
+//                } catch (SQLException e) {
+//                    LOGGER.error(e.getMessage(), e);
+//                }
+//            } );
+//            preparedStatement.executeBatch();
+
             for(EmployeeDTO emp: employeeDTO){
                 preparedStatement.setInt(1,emp.getId());
                 preparedStatement.setString(2,emp.getPrefix());
@@ -27,14 +50,16 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
                 preparedStatement.setString(5,emp.getLastName());
                 preparedStatement.setString(6,emp.getGender());
                 preparedStatement.setString(7,emp.getMail());
-                preparedStatement.setDate(8, Date.valueOf(emp.getDob())); // .toString() if not working
-                preparedStatement.setDate(9,Date.valueOf(emp.getDob()));  // As above
+
+                preparedStatement.setDate(8, Date.valueOf(emp.getDob())); //.toString() if not working
+                preparedStatement.setDate(9,Date.valueOf(emp.getStartDate()));    //same
+
                 preparedStatement.setDouble(10,emp.getSalary());
                 preparedStatement.addBatch();
             }
             preparedStatement.executeBatch();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -56,7 +81,7 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
         preparedStatement.execute();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -83,7 +108,7 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
                 System.out.println("No records in the table.");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage(), e);
         }
         return employeeDTO;
     }
@@ -114,7 +139,7 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
                 System.out.println("No records in the table.");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e.getMessage(), e);
         }
 
         return employees;

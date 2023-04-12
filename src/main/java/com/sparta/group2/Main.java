@@ -22,8 +22,8 @@ public class Main {
         CLI cli = new CLI();
         cli.run();
 
-//        long start1 = System.nanoTime();
 
+//        long start1 = System.nanoTime();
 //
 //      EmployeeStorageStarter.start();
 //      EmployeeStorageServiceInterface employeeStorageServiceInterface = new EmployeeStorageService();
@@ -36,6 +36,5 @@ public class Main {
         // System.out.println(dto.size());
 //      long end1 = System.nanoTime();
 //        System.out.println("Time taken: " + (end1 - start1));
-
     }
 }

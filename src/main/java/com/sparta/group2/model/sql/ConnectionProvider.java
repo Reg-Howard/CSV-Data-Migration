@@ -1,7 +1,11 @@
 package com.sparta.group2.model.sql;
 
+import com.sparta.group2.Main;
 import com.sparta.group2.model.factory.FileDataReader;
 import com.sparta.group2.model.storage.EmployeeStorage;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +16,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class ConnectionProvider {
-
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
     private static Connection connection = null;
     private static ConnectionProvider connectionProvider;
     private static Properties properties = new Properties();
@@ -35,7 +39,7 @@ public class ConnectionProvider {
                         properties.getProperty("username"),
                         properties.getProperty("password"));
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
         }
     return connection;
@@ -57,7 +61,7 @@ public class ConnectionProvider {
                 }
                 connection = DriverManager.getConnection(url,username,password);
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
         }
         return connection;
@@ -68,7 +72,7 @@ public class ConnectionProvider {
             try {
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
         }
         connection = null;

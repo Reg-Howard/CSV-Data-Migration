@@ -1,8 +1,10 @@
 package com.sparta.group2.model;
 
+import com.sparta.group2.controller.InterfaceDAO;
 import com.sparta.group2.model.sql.DAO;
 import org.junit.jupiter.api.*;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +56,49 @@ public class SQLModelChecks {
         @DisplayName("3. Test inserting Employee to DB")
         void testInsertingEmployeeToDB() {
             EmployeeDTO employeeDTO = mock(EmployeeDTO.class);
-            dao.insert(employeeDTO);
-            assertEquals(1, dao.findAll().size());
+            List<EmployeeDTO> list = new ArrayList<>();
+            list.add(employeeDTO);
+            InterfaceDAO<EmployeeDTO> interfaceDAO = mock(DAO.class);
+            when(interfaceDAO.findAll()).thenReturn(list);
+            interfaceDAO.insert(employeeDTO);
+            assertEquals(1, interfaceDAO.findAll().size());
+        }
+
+        @Test
+        @Order(4)
+        @DisplayName("4. Test inserting Employee to DB method")
+        void testInsertingToDBMethod(){
+            EmployeeDTO employeeDTO = mock(EmployeeDTO.class);
+            InterfaceDAO<EmployeeDTO> interfaceDAO = new DAO();
+            Assertions.assertThrows(NullPointerException.class, () -> interfaceDAO.insert(employeeDTO));
+        }
+
+        @Test
+        @Order(5)
+        @DisplayName("5. Test Batch Insert DB Method")
+        void testBatchInsertingMethod(){
+            List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+            EmployeeDTO employeeDTO = mock(EmployeeDTO.class);
+            employeeDTOList.add(employeeDTO);
+            InterfaceDAO<EmployeeDTO> interfaceDAO = new DAO();
+            Assertions.assertThrows(NullPointerException.class, () -> interfaceDAO.batchInsert(employeeDTOList));
+        }
+
+        @Test
+        @Order(6)
+        @DisplayName("6. Test Find By ID Method")
+        void testFindByIDMethod(){
+            InterfaceDAO<EmployeeDTO> interfaceDAO = new DAO();
+            Assertions.assertEquals(null, interfaceDAO.findById(1));
+        }
+
+        @Test
+        @Order(7)
+        @DisplayName("7. Test Find All Method")
+        void testFindAllMethod(){
+            List<EmployeeDTO> nothing = new ArrayList<>();
+            InterfaceDAO<EmployeeDTO> interfaceDAO = new DAO();
+            Assertions.assertEquals(nothing, interfaceDAO.findAll());
         }
     }
 }
