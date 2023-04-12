@@ -15,7 +15,7 @@ public class DatabaseSetUp {
  private static final String dropDB = "DROP DATABASE IF EXIST dataMigration";
 
 
- private static void setUpAndPopulateDB(){
+ public static void setUpAndPopulateDB(){
 
      DAO dao= new DAO();
 
