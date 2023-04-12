@@ -138,34 +138,13 @@ public class EmployeeDTO {
 
         EmployeeDTO that = (EmployeeDTO) o;
 
-        if (id != that.id) {
-            return false;
-        }
-        if (Double.compare(that.salary, salary) != 0) {
-            return false;
-        }
-        if (!Objects.equals(prefix, that.prefix)) {
-            return false;
-        }
         if (!Objects.equals(firstName, that.firstName)) {
             return false;
         }
         if (!Objects.equals(middleInitial, that.middleInitial)) {
             return false;
         }
-        if (!Objects.equals(lastName, that.lastName)) {
-            return false;
-        }
-        if (!Objects.equals(gender, that.gender)) {
-            return false;
-        }
-        if (!Objects.equals(mail, that.mail)) {
-            return false;
-        }
-        if (!Objects.equals(dob, that.dob)) {
-            return false;
-        }
-        return Objects.equals(startDate, that.startDate);
+        return Objects.equals(lastName, that.lastName);
     }
 
     @Override

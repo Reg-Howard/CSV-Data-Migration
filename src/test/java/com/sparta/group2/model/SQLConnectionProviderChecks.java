@@ -1,9 +1,13 @@
 package com.sparta.group2.model;
 
+import com.sparta.group2.controller.EmployeeStorageInterface;
 import com.sparta.group2.model.sql.ConnectionProvider;
+import com.sparta.group2.model.sql.DatabaseSetUp;
+import com.sparta.group2.model.storage.EmployeeStorage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 
+import static com.sparta.group2.model.sql.DatabaseSetUp.setUpAndPopulateDB;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.sql.*;
@@ -44,6 +48,17 @@ public class SQLConnectionProviderChecks {
             //Act
             //Assert
             assertTrue(connection == ConnectionProvider.getConnection());
+        }
+        @Test
+        void testConnectionSingleton(){
+            ConnectionProvider connectionProvider = ConnectionProvider.createConnectionProvider();
+            ConnectionProvider connectionProvide2 = ConnectionProvider.createConnectionProvider();
+            Assertions.assertEquals(connectionProvider,connectionProvide2);
+        }
+
+        @Test
+        void testDatabaseSetup() {
+            Assertions.assertThrows(NullPointerException.class, ()-> setUpAndPopulateDB());
         }
     }
     @Nested
