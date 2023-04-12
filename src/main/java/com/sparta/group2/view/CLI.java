@@ -1,4 +1,5 @@
 package com.sparta.group2.view;
+import com.sparta.group2.controller.EmployeeStorageInterface;
 import com.sparta.group2.controller.EmployeeStorageServiceInterface;
 import com.sparta.group2.controller.EmployeeStorageStarter;
 import com.sparta.group2.controller.InterfaceDAO;
@@ -15,21 +16,22 @@ import java.util.Scanner;
 public class CLI {
 
     public void run() {
-        System.out.println("Please wait whilst data is fetched and stored.");
-        long start1 = System.nanoTime();
         EmployeeStorageStarter.start();
         EmployeeStorageServiceInterface employeeServiceInterface = new EmployeeStorageService();
+        EmployeeStorageInterface storageInterface = EmployeeStorage.getStorage();
+
+        System.out.println("Please wait whilst data is fetched and stored.");
+        long start1 = System.nanoTime();
         employeeServiceInterface.getFromFactory();
         DatabaseSetUp.setUpAndPopulateDB();
-
         long end1 = System.nanoTime();
         System.out.println("Time taken to setup: " +  (end1 - start1) / 1000000000  + "seconds \n");
 
 
         InterfaceDAO dao = new DAO();
         Scanner scanner = new Scanner(System.in);
-        HashMap<Integer, EmployeeDTO> cleanList = EmployeeStorage.getStorage().getCleanList();
-        HashMap<Integer, EmployeeDTO> uncleanList = EmployeeStorage.getStorage().getUncleanList();
+        HashMap<Integer, EmployeeDTO> cleanList = storageInterface.getCleanList();
+        HashMap<Integer, EmployeeDTO> uncleanList = storageInterface.getUncleanList();
 
         while (true) {
             System.out.println("Hello, Please select an option:");
