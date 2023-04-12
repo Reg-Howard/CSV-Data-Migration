@@ -12,7 +12,6 @@ public class EmployeeFactory {
         if(input == null || input.equals("")){
             return null;
         }
-
         String[] splitInput = input.split(",");
         if(splitInput.length != 10){
             return null;
@@ -30,8 +29,9 @@ public class EmployeeFactory {
         LocalDate startDate = LocalDate.parse(splitInput[8], formatter);
 //        LocalDate dob = ParsingFactory.toDate(splitInput[7]);
 //        LocalDate startDate = ParsingFactory.toDate(splitInput[8]);
-        double salary = Integer.parseInt(splitInput[9]);
-//        double salary = ParsingFactory.toInt(splitInput[9]);
+        double salary = Double.parseDouble(splitInput[9]);
+//        int salary = ParsingFactory.toInt(splitInput[9]);
+
         return new EmployeeDTO(id,prefix,firstName,middleInitial,lastName,gender,mail,dob,startDate,salary);
     }
 }

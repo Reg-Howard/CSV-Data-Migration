@@ -100,7 +100,6 @@ When picking a single employee record through the CLI. We should throw an error 
 - (get/set)Gender;
 - (get/set)HireDate;
 
-
 <!-- 
 **Convert Employee Object to a String:**
 - `employeeObject.toString()`
@@ -140,8 +139,23 @@ When picking a single employee record through the CLI. We should throw an error 
 * @HamzaKazi
 * @MarcinJakobik
 * @bakar212
-* Still to add Muhammad
+* @usmanrizwan1
+
+### EMployee Objects Useful Methods
+
+**Getters and setters:**
+
+* (get/set)Id;
+* (get/set)Prefix;
+* (get/set)FirstName;
+* (get/set)LastName;
+* (get/set)Mail;
+* (get/set)DOB;
 
 ## License
 
 This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+getPrefix() {
+        return prefix;
+    }

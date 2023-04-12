@@ -1,0 +1,24 @@
+# Project Presentation Guidelines
+
+## General Points
+The audience for project presentations in Sparta Global may or may not be developers,
+ some will be business analysts, some will be developers but not necessarily in Java, 
+some will be using programming only as a tool within a wider IT context, such as DevOps
+ or security consultants. As such, you should aim your presentation at a technical, but 
+not necessary developer or Java, audience. Concentrate more on the project itself, rather 
+than the product.
+
+## Presentation Contents
+Your presentation should cover:
+- The requirements for the project
+- The planning you did (you can include a brief description of the tools if you like here)
+- What you created
+- The benefits it will bring (possibly including a demo)
+- What did you learn?
+- What problems did you encounter and how did you solve them?
+- What would you do differently next time?
+
+## Organisation
+- It is often useful to have one person organising the presentation and handing over to the individual speakers.
+- Allow time for questions within your allocated time slot.
+- If not everyone can be involved in the presentation itself, they can handle questions instead.

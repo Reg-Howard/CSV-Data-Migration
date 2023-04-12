@@ -27,7 +27,7 @@ public class SQLModelChecks {
         void testFindingEmployeeById() {
             EmployeeDTO employeeDTO = new EmployeeDTO(123, "Mr", "Marcin", "S", "Jakobik", "M", "teest@12.com", LocalDate.of(1967, 10, 22), LocalDate.of(1967, 10, 22), 1234);
             when(dao.findById(123)).thenReturn(employeeDTO);
-            assertEquals(123, employeeDTO.getId());
+            assertEquals(123, dao.findById(123).getId());
         }
 
         @Test
