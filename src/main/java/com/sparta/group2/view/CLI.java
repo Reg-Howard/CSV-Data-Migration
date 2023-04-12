@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class CLI {
 
     public void run() {
-        System.out.println("Please wait whilst data is fetched and stored.");
+        System.out.println("Please wait whilst data is fetched and stored...");
         long start1 = System.nanoTime();
         EmployeeStorageStarter.start();
         EmployeeStorageServiceInterface employeeServiceInterface = new EmployeeStorageService();
