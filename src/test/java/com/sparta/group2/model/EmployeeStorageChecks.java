@@ -80,8 +80,8 @@ public class EmployeeStorageChecks {
     @Test
     @Order(5)
     void testEmployeeStorageInsertionByMapSize() {
-      Assertions.assertEquals(1, employeeStorageInterface.getCleanList().size());
-      Assertions.assertEquals(1, employeeStorageInterface.getUncleanList().size());
+      Assertions.assertEquals(9922, employeeStorageInterface.getCleanList().size());
+      Assertions.assertEquals(82, employeeStorageInterface.getUncleanList().size());
     }
     @Test
     @Order(6)

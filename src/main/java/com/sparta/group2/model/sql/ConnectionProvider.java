@@ -19,7 +19,7 @@ public class ConnectionProvider {
     private ConnectionProvider(){
 
     }
-    public static ConnectionProvider createrConnectionProvider() {
+    public static ConnectionProvider createConnectionProvider() {
         if (connectionProvider == null) {
             connectionProvider = new ConnectionProvider();
             return connectionProvider;
@@ -29,6 +29,7 @@ public class ConnectionProvider {
     public static Connection getConnection(){
         if (connection == null) {
             try {
+                createConnectionProvider();
                 properties.load(new FileReader("src/main/resources/login.properties"));
                 getConnection(properties.getProperty("url"),
                         properties.getProperty("username"),
