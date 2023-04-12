@@ -29,7 +29,6 @@ public class CLI {
         EmployeeStorageInterface storageInterface = EmployeeStorage.getStorage();
 
         System.out.println("Please wait whilst data is fetched and stored.");
-        long start1 = System.nanoTime();
         try {
             employeeServiceInterface.getFromFactory();
             DatabaseSetUp.setUpAndPopulateDB();
