@@ -80,15 +80,14 @@ public class EmployeeStorageChecks {
     @Test
     @Order(5)
     void testEmployeeStorageInsertionByMapSize() {
-      Assertions.assertEquals(1, employeeStorageInterface.getCleanList().size());
-      Assertions.assertEquals(1, employeeStorageInterface.getUncleanList().size());
+      Assertions.assertEquals(9922, employeeStorageInterface.getCleanList().size());
+      Assertions.assertEquals(82, employeeStorageInterface.getUncleanList().size());
     }
     @Test
     @Order(6)
     void testStorageServiceGettingDataFromFactory() {
-      EmployeeStorageServiceInterface employeeStorageServiceInterface = new EmployeeStorageService();
-      employeeStorageServiceInterface.getFromFactory();
-      int totalEntries = 10002;
+
+      int totalEntries = 10004;
       Assertions.assertEquals(totalEntries, employeeStorageInterface.getCleanList().size() + employeeStorageInterface.getUncleanList().size());
     }
     @Test

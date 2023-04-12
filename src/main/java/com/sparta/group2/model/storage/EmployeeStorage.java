@@ -16,8 +16,8 @@ public class EmployeeStorage implements EmployeeStorageInterface {
   public static EmployeeStorage createEmployeeStorage() {
     if (employeeStorage == null) {
       employeeStorage = new EmployeeStorage();
-      cleanList = new HashMap<>();
-      uncleanList = new HashMap<>();
+      cleanList = new HashMap<>(100000);
+      uncleanList = new HashMap<>(100000);
       return employeeStorage;
     }
     return employeeStorage;

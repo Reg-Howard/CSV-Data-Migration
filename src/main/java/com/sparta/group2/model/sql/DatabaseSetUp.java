@@ -1,15 +1,24 @@
 package com.sparta.group2.model.sql;
 
+import com.sparta.group2.controller.EmployeeStorageServiceInterface;
+import com.sparta.group2.model.EmployeeDTO;
 import com.sparta.group2.model.storage.EmployeeStorage;
+import com.sparta.group2.model.storage.EmployeeStorageService;
+
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 
 public class DatabaseSetUp {
 
- private static final String createDB = "CREATE DATABASE dataMigration";
+ private static final String createDB = "CREATE DATABASE datamigration";
 
  private static final String createEmployeeTable = "CREATE TABLE employees (Id int NOT NULL PRIMARY KEY, Prefix varchar(10), FirstName varchar(255),MiddleInitial varchar(1), LastName varchar(255), Gender varchar(10), Email varchar(255), DoB date, StartDate date, salary double)";
 
@@ -33,11 +42,12 @@ public class DatabaseSetUp {
          useDBStatement.execute();
          PreparedStatement createTableStatement = connection.prepareStatement(createEmployeeTable);
          createTableStatement.execute();
-         EmployeeStorage.getStorage().getCleanList().forEach((integer, employeeDTO) -> dao.insert(employeeDTO));
-
+         //EmployeeStorage.getStorage().getCleanList().forEach((idKey, employeeDTO) -> dao.insert(employeeDTO));
+       List<EmployeeDTO> employeeDTOList = new ArrayList<>(EmployeeStorage.getStorage().getCleanList().values());
+          dao.batchInsert(employeeDTOList);
      } catch (SQLException e) {
          throw new RuntimeException(e);
      }
-
  }
+
 }

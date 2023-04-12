@@ -1,5 +1,6 @@
 package com.sparta.group2.model.sql;
 
+import com.sparta.group2.controller.InterfaceDAO;
 import com.sparta.group2.model.EmployeeDTO;
 
 import java.sql.*;
@@ -16,24 +17,43 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
 
     private static final Connection connection =ConnectionProvider.getConnection();
 
+    public void batchInsert(List<EmployeeDTO> employeeDTO){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(insertAnEmployee)){
+            for(EmployeeDTO emp: employeeDTO){
+                preparedStatement.setInt(1,emp.getId());
+                preparedStatement.setString(2,emp.getPrefix());
+                preparedStatement.setString(3,emp.getFirstName());
+                preparedStatement.setString(4,emp.getMiddleInitial());
+                preparedStatement.setString(5,emp.getLastName());
+                preparedStatement.setString(6,emp.getGender());
+                preparedStatement.setString(7,emp.getMail());
+                preparedStatement.setDate(8, Date.valueOf(emp.getDob())); //.toString() if not working
+                preparedStatement.setDate(9,Date.valueOf(emp.getDob()));    //same
+                preparedStatement.setDouble(10,emp.getSalary());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    @Override
-    public void insert(EmployeeDTO employeeDTO) {
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(insertAnEmployee);
-            preparedStatement.setInt(1, employeeDTO.getId());
-            preparedStatement.setString(2, employeeDTO.getPrefix());
-            preparedStatement.setString(3, employeeDTO.getFirstName());
-            preparedStatement.setString(4, employeeDTO.getMiddleInitial());
-            preparedStatement.setString(5, employeeDTO.getLastName());
-            preparedStatement.setString(6, employeeDTO.getGender());
-            preparedStatement.setString(7, employeeDTO.getMail());
-            preparedStatement.setDate(8, Date.valueOf(employeeDTO.getDob())); //.toString() if not working
-            preparedStatement.setDate(9, Date.valueOf(employeeDTO.getDob()));    //same
-            preparedStatement.setDouble(10, employeeDTO.getSalary());
-            preparedStatement.execute();
 
+    public void  insert(EmployeeDTO employeeDTO) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertAnEmployee)) {
+
+        preparedStatement.setInt(1,employeeDTO.getId());
+        preparedStatement.setString(2,employeeDTO.getPrefix());
+        preparedStatement.setString(3,employeeDTO.getFirstName());
+        preparedStatement.setString(4,employeeDTO.getMiddleInitial());
+        preparedStatement.setString(5,employeeDTO.getLastName());
+        preparedStatement.setString(6,employeeDTO.getGender());
+        preparedStatement.setString(7,employeeDTO.getMail());
+        preparedStatement.setDate(8, Date.valueOf(employeeDTO.getDob())); //.toString() if not working
+        preparedStatement.setDate(9,Date.valueOf(employeeDTO.getDob()));    //same
+        preparedStatement.setDouble(10,employeeDTO.getSalary());
+        preparedStatement.execute();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
