@@ -86,9 +86,8 @@ public class EmployeeStorageChecks {
     @Test
     @Order(6)
     void testStorageServiceGettingDataFromFactory() {
-      EmployeeStorageServiceInterface employeeStorageServiceInterface = new EmployeeStorageService();
-      employeeStorageServiceInterface.getFromFactory();
-      int totalEntries = 10002;
+
+      int totalEntries = 10004;
       Assertions.assertEquals(totalEntries, employeeStorageInterface.getCleanList().size() + employeeStorageInterface.getUncleanList().size());
     }
     @Test

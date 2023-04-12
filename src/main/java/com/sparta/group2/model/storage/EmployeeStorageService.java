@@ -16,7 +16,7 @@ public class EmployeeStorageService implements EmployeeStorageServiceInterface {
   public void insertIntoList(EmployeeDTO item) {
 
       //checks for known errors in the data
-    if(  item.getMiddleInitial().contains("FALSE") || item.getSalary() < 0 ){
+    if(item.getMiddleInitial().contains("FALSE") || item.getSalary() < 0 ){
       storage.addUncleanItem(item);
       //checks if doesn't exist in clean storage already, then adds it to the storage
     } else if(storage.getCleanList().get(item.hashCode()) == null) {

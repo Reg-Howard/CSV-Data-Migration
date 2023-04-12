@@ -20,9 +20,9 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
 
     @Override
     public void  insert(EmployeeDTO employeeDTO) {
-        PreparedStatement preparedStatement;
-        try {
-        preparedStatement = ConnectionProvider.getConnection().prepareStatement(insertAnEmployee);
+
+        try (PreparedStatement preparedStatement = ConnectionProvider.getConnection().prepareStatement(insertAnEmployee)) {
+
         preparedStatement.setInt(1,employeeDTO.getId());
         preparedStatement.setString(2,employeeDTO.getPrefix());
         preparedStatement.setString(3,employeeDTO.getFirstName());
