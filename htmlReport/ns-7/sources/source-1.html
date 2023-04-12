@@ -1,0 +1,231 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CLI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sparta.group2.view</a>
+</div>
+
+<h1>Coverage Summary for Class: CLI (com.sparta.group2.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CLI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/80)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sparta.group2.view;
+&nbsp;import com.sparta.group2.Main;
+&nbsp;import com.sparta.group2.controller.EmployeeStorageInterface;
+&nbsp;import com.sparta.group2.controller.EmployeeStorageServiceInterface;
+&nbsp;import com.sparta.group2.controller.EmployeeStorageStarter;
+&nbsp;import com.sparta.group2.controller.InterfaceDAO;
+&nbsp;import com.sparta.group2.model.EmployeeDTO;
+&nbsp;import com.sparta.group2.model.sql.DAO;
+&nbsp;import com.sparta.group2.model.sql.DatabaseSetUp;
+&nbsp;import com.sparta.group2.model.storage.EmployeeStorage;
+&nbsp;import com.sparta.group2.model.storage.EmployeeStorageService;
+&nbsp;
+&nbsp;import org.apache.logging.log4j.LogManager;
+&nbsp;import org.apache.logging.log4j.Logger;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Scanner;
+&nbsp;
+<b class="nc">&nbsp;public class CLI {</b>
+<b class="nc">&nbsp;    private static final Logger LOGGER = LogManager.getLogger(Main.class);</b>
+&nbsp;    public void run() {
+<b class="nc">&nbsp;        System.out.println(&quot;Please wait whilst data is fetched and stored...&quot;);</b>
+<b class="nc">&nbsp;        long start1 = System.nanoTime();</b>
+&nbsp;
+<b class="nc">&nbsp;        EmployeeStorageStarter.start();</b>
+<b class="nc">&nbsp;        EmployeeStorageServiceInterface employeeServiceInterface = new EmployeeStorageService();</b>
+<b class="nc">&nbsp;        EmployeeStorageInterface storageInterface = EmployeeStorage.getStorage();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Please wait whilst data is fetched and stored.&quot;);</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            employeeServiceInterface.getFromFactory();</b>
+<b class="nc">&nbsp;            DatabaseSetUp.setUpAndPopulateDB();</b>
+<b class="nc">&nbsp;        }catch (Exception e) {</b>
+<b class="nc">&nbsp;            LOGGER.error(e.getMessage(), e);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Start up failed, exiting&quot;);</b>
+<b class="nc">&nbsp;            System.exit(0);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        long end1 = System.nanoTime();</b>
+<b class="nc">&nbsp;        System.out.println(&quot;Time taken to setup: &quot; +  (end1 - start1) / 1000000000  + &quot;seconds \n&quot;);</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        InterfaceDAO dao = new DAO();</b>
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+<b class="nc">&nbsp;        HashMap&lt;Integer, EmployeeDTO&gt; cleanList = storageInterface.getCleanList();</b>
+<b class="nc">&nbsp;        HashMap&lt;Integer, EmployeeDTO&gt; uncleanList = storageInterface.getUncleanList();</b>
+&nbsp;
+&nbsp;        while (true) {
+<b class="nc">&nbsp;            System.out.println(&quot;Hello, Please select an option:&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;1. Display clean data&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;2. Display unclean data&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;3. Display employees with duplicate ID&#39;s&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;4. Display negative salary employees&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;5. Display employees with \&quot;FALSE\&quot; middle name&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;6. Display the size of clean and unclean data&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;7. Display all records stored in the database&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;8. To display a specific employee by ID&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;9. Exit&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            int choice = scanner.nextInt();</b>
+&nbsp;
+<b class="nc">&nbsp;            switch (choice) {</b>
+&nbsp;                case 1:
+<b class="nc">&nbsp;                    System.out.println(&quot;--------------CLEAN DATA--------------&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    cleanList.forEach((integer, employeeDTO) -&gt; System.out.println(employeeDTO.toString()));</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Amount of items that are clean: &quot; + cleanList.size());</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 2:
+<b class="nc">&nbsp;                    System.out.println(&quot;--------------UNCLEAN DATA--------------&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    uncleanList.forEach((id, employeeDTO) -&gt; System.out.println(employeeDTO.toString()));</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Amount of items that are un-clean: &quot; + uncleanList.size());</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 3:
+<b class="nc">&nbsp;                    System.out.println(&quot;Employees with a duplicate ID:&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Amount: &quot; + employeeServiceInterface.listOfDuplicateIDs());</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 4:
+<b class="nc">&nbsp;                    System.out.println(&quot;Employees with a negative salary:&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Amount: &quot; +  employeeServiceInterface.employeesWithNegativeSalary());</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 5:
+<b class="nc">&nbsp;                    System.out.println(&quot;Employees with incorrect middle name field&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Amount: &quot; + employeeServiceInterface.employeesWithBadMiddleName());</b>
+<b class="nc">&nbsp;                    System.out.println();</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 6:
+<b class="nc">&nbsp;                    System.out.println(&quot;Size of clean data: &quot; + cleanList.size() + &quot;\n&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Size of unclean data: &quot; + uncleanList.size() + &quot;\n&quot;);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 7:
+<b class="nc">&nbsp;                    List&lt;EmployeeDTO&gt; dto = dao.findAll();</b>
+<b class="nc">&nbsp;                    dto.forEach(System.out::println);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;SUCCESSFULLY PRINTED ALL EMPLOYEE RECORDS!\n&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 8:
+<b class="nc">&nbsp;                    System.out.println(&quot;Please enter an Employee ID:&quot;);</b>
+<b class="nc">&nbsp;                    int employeeID = scanner.nextInt();</b>
+<b class="nc">&nbsp;                    if(dao.findById(employeeID) != null) {</b>
+<b class="nc">&nbsp;                        System.out.println(dao.findById(employeeID));</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;SUCCESSFULLY PRINTED EMPLOYEE RECORD!\n&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println();</b>
+&nbsp;                    } else {
+<b class="nc">&nbsp;                        System.out.println(&quot;Invalid ID&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println();</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case 9:
+<b class="nc">&nbsp;                    scanner.close();</b>
+&nbsp;                    return;
+&nbsp;                default:
+<b class="nc">&nbsp;                    System.out.println(&quot;Invalid choice, please try again.\n&quot;);</b>
+&nbsp;                    break;
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-12 21:55</div>
+</div>
+</body>
+</html>

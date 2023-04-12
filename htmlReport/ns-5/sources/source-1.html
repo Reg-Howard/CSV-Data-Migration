@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ConnectionProvider</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sparta.group2.model.sql</a>
+</div>
+
+<h1>Coverage Summary for Class: ConnectionProvider (com.sparta.group2.model.sql)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConnectionProvider</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.2%
+  </span>
+  <span class="absValue">
+    (32/38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sparta.group2.model.sql;
+&nbsp;
+&nbsp;import com.sparta.group2.Main;
+&nbsp;import com.sparta.group2.model.factory.FileDataReader;
+&nbsp;import com.sparta.group2.model.storage.EmployeeStorage;
+&nbsp;
+&nbsp;import org.apache.logging.log4j.LogManager;
+&nbsp;import org.apache.logging.log4j.Logger;
+&nbsp;
+&nbsp;import java.io.FileReader;
+&nbsp;import java.io.IOException;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.DriverManager;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Properties;
+&nbsp;
+&nbsp;public class ConnectionProvider {
+<b class="fc">&nbsp;    private static final Logger LOGGER = LogManager.getLogger(Main.class);</b>
+<b class="fc">&nbsp;    private static Connection connection = null;</b>
+&nbsp;    private static ConnectionProvider connectionProvider;
+<b class="fc">&nbsp;    private static Properties properties = new Properties();</b>
+&nbsp;    private ConnectionProvider(){
+&nbsp;
+&nbsp;    }
+&nbsp;    public static ConnectionProvider createConnectionProvider() {
+<b class="fc">&nbsp;        if (connectionProvider == null) {</b>
+<b class="fc">&nbsp;            connectionProvider = new ConnectionProvider();</b>
+<b class="fc">&nbsp;            return connectionProvider;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return connectionProvider;</b>
+&nbsp;    }
+&nbsp;    public static Connection getConnection(){
+<b class="fc">&nbsp;        if (connection == null) {</b>
+&nbsp;            try {
+<b class="fc">&nbsp;                createConnectionProvider();</b>
+<b class="fc">&nbsp;                properties.load(new FileReader(&quot;src/main/resources/login.properties&quot;));</b>
+<b class="fc">&nbsp;                getConnection(properties.getProperty(&quot;url&quot;),</b>
+<b class="fc">&nbsp;                        properties.getProperty(&quot;username&quot;),</b>
+<b class="fc">&nbsp;                        properties.getProperty(&quot;password&quot;));</b>
+<b class="nc">&nbsp;            } catch (IOException e) {</b>
+<b class="nc">&nbsp;                LOGGER.error(e.getMessage(), e);</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+<b class="fc">&nbsp;    return connection;</b>
+&nbsp;    }
+&nbsp;    public static Connection getConnection(String url, String username, String password){
+<b class="fc">&nbsp;        if (connection == null) {</b>
+&nbsp;            try {
+<b class="fc">&nbsp;                if(url==(null) || url.equals(&quot;&quot;)){</b>
+<b class="fc">&nbsp;                    System.out.println(&quot;Please input url details&quot;);</b>
+<b class="fc">&nbsp;                    return null;</b>
+&nbsp;                }
+<b class="fc">&nbsp;                if(username==(null) || username.equals(&quot;&quot;)){</b>
+<b class="fc">&nbsp;                    System.out.println(&quot;Please input username details&quot;);</b>
+<b class="fc">&nbsp;                    return null;</b>
+&nbsp;                }
+<b class="fc">&nbsp;                if(password==(null) || password.equals(&quot;&quot;)){</b>
+<b class="fc">&nbsp;                    System.out.println(&quot;Please input password details&quot;);</b>
+<b class="fc">&nbsp;                    return null;</b>
+&nbsp;                }
+<b class="fc">&nbsp;                connection = DriverManager.getConnection(url,username,password);</b>
+<b class="nc">&nbsp;            } catch (SQLException e) {</b>
+<b class="nc">&nbsp;                LOGGER.error(e.getMessage(), e);</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return connection;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void closeConnection(){
+<b class="fc">&nbsp;        if(connection != null){</b>
+&nbsp;            try {
+<b class="fc">&nbsp;                connection.close();</b>
+<b class="nc">&nbsp;            } catch (SQLException e) {</b>
+<b class="nc">&nbsp;                LOGGER.error(e.getMessage(), e);</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+<b class="fc">&nbsp;        connection = null;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-12 21:55</div>
+</div>
+</body>
+</html>
