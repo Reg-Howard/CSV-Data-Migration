@@ -27,7 +27,6 @@ public class FileDataReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
 

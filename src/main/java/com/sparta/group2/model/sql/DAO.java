@@ -27,8 +27,8 @@ public class DAO implements InterfaceDAO<EmployeeDTO> {
                 preparedStatement.setString(5,emp.getLastName());
                 preparedStatement.setString(6,emp.getGender());
                 preparedStatement.setString(7,emp.getMail());
-                preparedStatement.setDate(8, Date.valueOf(emp.getDob())); //.toString() if not working
-                preparedStatement.setDate(9,Date.valueOf(emp.getDob()));    //same
+                preparedStatement.setDate(8, Date.valueOf(emp.getDob())); // .toString() if not working
+                preparedStatement.setDate(9,Date.valueOf(emp.getDob()));  // As above
                 preparedStatement.setDouble(10,emp.getSalary());
                 preparedStatement.addBatch();
             }
