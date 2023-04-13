@@ -24,15 +24,13 @@ public class CLI {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
     public void run() {
-        System.out.println("Please wait whilst data is fetched and stored...");
-        long start1 = System.nanoTime();
+       System.out.println("Please wait whilst data is fetched and stored...");
+       long start1 = System.nanoTime();
 
     EmployeeStorageStarter.start();
     EmployeeStorageServiceInterface employeeServiceInterface = new EmployeeStorageService();
     EmployeeStorageInterface storageInterface = EmployeeStorage.getStorage();
 
-    System.out.println("Please wait whilst data is fetched and stored.");
-    long start1 = System.nanoTime();
     try {
       employeeServiceInterface.getFromFactory();
       DatabaseSetUp.setUpAndPopulateDB();

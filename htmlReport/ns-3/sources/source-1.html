@@ -188,18 +188,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public String toString() {
-<b class="fc">&nbsp;        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;);</b>
+<b class="fc">&nbsp;        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);</b>
 <b class="fc">&nbsp;        return</b>
-&nbsp;                &quot;&quot; + id +
-&nbsp;                &quot;,&quot; + prefix +
-&nbsp;                &quot;,&quot; + firstName +
-&nbsp;                &quot;,&quot; + middleInitial +
-&nbsp;                &quot;,&quot; + lastName +
-&nbsp;                &quot;,&quot; + gender +
-&nbsp;                &quot;,&quot; + mail +
-<b class="fc">&nbsp;                &quot;,&quot; + dob.format(formatter) +</b>
-<b class="fc">&nbsp;                &quot;,&quot; + startDate.format(formatter) +</b>
-&nbsp;                &quot;,&quot; + (int)salary ;
+&nbsp;                &quot;ID: &quot; + id + &quot; &quot; +
+&nbsp;                &quot;Prefix: &quot; + prefix + &quot; &quot; +
+&nbsp;                &quot;First Name: &quot; + firstName + &quot;  &quot; +
+&nbsp;                &quot;Middle Initial: &quot; + middleInitial + &quot;  &quot; +
+&nbsp;                &quot;Last Name: &quot; + lastName + &quot;    &quot; +
+&nbsp;                &quot;Gender: &quot; + gender + &quot; &quot; +
+&nbsp;                &quot;Email: &quot; + mail + &quot;    &quot; +
+<b class="fc">&nbsp;                &quot;Date of Birth: &quot; + dob.format(formatter) + &quot;   &quot; +</b>
+<b class="fc">&nbsp;                &quot;Start Date: &quot; + startDate.format(formatter) + &quot;    &quot; +</b>
+&nbsp;                &quot;Salary: &quot; + (int)salary ;
 &nbsp;    }
 &nbsp;
 &nbsp;
@@ -251,7 +251,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-04-12 21:55</div>
+    <div style="float:right;">generated on 2023-04-13 10:50</div>
 </div>
 </body>
 </html>
