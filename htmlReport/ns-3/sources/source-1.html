@@ -1,0 +1,257 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > EmployeeDTO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sparta.group2.model</a>
+</div>
+
+<h1>Coverage Summary for Class: EmployeeDTO (com.sparta.group2.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EmployeeDTO</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (24/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.3%
+  </span>
+  <span class="absValue">
+    (42/46)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sparta.group2.model;
+&nbsp;
+&nbsp;import java.time.LocalDate;
+&nbsp;import java.time.format.DateTimeFormatter;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;public class EmployeeDTO {
+&nbsp;
+&nbsp;    private int id;
+&nbsp;    private String prefix;
+&nbsp;    private String firstName;
+&nbsp;    private String middleInitial;
+&nbsp;    private String lastName;
+&nbsp;    private String gender;
+&nbsp;    private String mail;
+&nbsp;    private LocalDate dob;
+&nbsp;    private LocalDate startDate;
+&nbsp;    private double salary;
+&nbsp;
+<b class="fc">&nbsp;    public EmployeeDTO(int id, String prefix, String firstName, String middleInitial, String lastName, String gender, String mail, LocalDate dob, LocalDate startDate, double salary) {</b>
+<b class="fc">&nbsp;        this.id = id;</b>
+<b class="fc">&nbsp;        this.prefix = prefix;</b>
+<b class="fc">&nbsp;        this.firstName = firstName;</b>
+<b class="fc">&nbsp;        this.middleInitial = middleInitial;</b>
+<b class="fc">&nbsp;        this.lastName = lastName;</b>
+<b class="fc">&nbsp;        this.gender = gender;</b>
+<b class="fc">&nbsp;        this.mail = mail;</b>
+<b class="fc">&nbsp;        this.dob = dob;</b>
+<b class="fc">&nbsp;        this.startDate = startDate;</b>
+<b class="fc">&nbsp;        this.salary = salary;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getId() {
+<b class="fc">&nbsp;        return id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setId(int id) {
+<b class="fc">&nbsp;        this.id = id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getPrefix() {
+<b class="fc">&nbsp;        return prefix;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPrefix(String prefix) {
+<b class="fc">&nbsp;        this.prefix = prefix;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getFirstName() {
+<b class="fc">&nbsp;        return firstName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setFirstName(String firstName) {
+<b class="fc">&nbsp;        this.firstName = firstName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getMiddleInitial() {
+<b class="fc">&nbsp;        return middleInitial;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setMiddleInitial(String middleInitial) {
+<b class="fc">&nbsp;        this.middleInitial = middleInitial;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getLastName() {
+<b class="fc">&nbsp;        return lastName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setLastName(String lastName) {
+<b class="fc">&nbsp;        this.lastName = lastName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getGender() {
+<b class="fc">&nbsp;        return gender;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setGender(String gender) {
+<b class="fc">&nbsp;        this.gender = gender;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getMail() {
+<b class="fc">&nbsp;        return mail;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setMail(String eMail) {
+<b class="fc">&nbsp;        this.mail = eMail;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public LocalDate getDob() {
+<b class="fc">&nbsp;        return dob;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDob(LocalDate dob) {
+<b class="fc">&nbsp;        this.dob = dob;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public LocalDate getStartDate() {
+<b class="fc">&nbsp;        return startDate;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setStartDate(LocalDate startDate) {
+<b class="fc">&nbsp;        this.startDate = startDate;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getSalary() {
+<b class="fc">&nbsp;        return salary;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setSalary(double salary) {
+<b class="fc">&nbsp;        this.salary = salary;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy&quot;);</b>
+<b class="fc">&nbsp;        return</b>
+&nbsp;                &quot;&quot; + id +
+&nbsp;                &quot;,&quot; + prefix +
+&nbsp;                &quot;,&quot; + firstName +
+&nbsp;                &quot;,&quot; + middleInitial +
+&nbsp;                &quot;,&quot; + lastName +
+&nbsp;                &quot;,&quot; + gender +
+&nbsp;                &quot;,&quot; + mail +
+<b class="fc">&nbsp;                &quot;,&quot; + dob.format(formatter) +</b>
+<b class="fc">&nbsp;                &quot;,&quot; + startDate.format(formatter) +</b>
+&nbsp;                &quot;,&quot; + (int)salary ;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="fc">&nbsp;        if (this == o) {</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (o == null || getClass() != o.getClass()) {</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        EmployeeDTO that = (EmployeeDTO) o;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (!Objects.equals(firstName, that.firstName)) {</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!Objects.equals(middleInitial, that.middleInitial)) {</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return Objects.equals(lastName, that.lastName);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="fc">&nbsp;        return id;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-12 21:55</div>
+</div>
+</body>
+</html>

@@ -21,9 +21,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CLI {
-  private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-  public void run() {
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
+    public void run() {
+        System.out.println("Please wait whilst data is fetched and stored...");
+        long start1 = System.nanoTime();
 
     EmployeeStorageStarter.start();
     EmployeeStorageServiceInterface employeeServiceInterface = new EmployeeStorageService();

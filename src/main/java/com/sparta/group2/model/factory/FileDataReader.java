@@ -31,7 +31,6 @@ public class FileDataReader {
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
-
     }
 }
 
