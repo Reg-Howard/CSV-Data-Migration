@@ -1,0 +1,250 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sparta.group2.model.sql</a>
+</div>
+
+<h1>Coverage Summary for Class: DAO (com.sparta.group2.model.sql)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DAO</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    43.8%
+  </span>
+  <span class="absValue">
+    (35/80)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sparta.group2.model.sql;
+&nbsp;
+&nbsp;import com.sparta.group2.Main;
+&nbsp;import com.sparta.group2.controller.InterfaceDAO;
+&nbsp;import com.sparta.group2.model.EmployeeDTO;
+&nbsp;
+&nbsp;import org.apache.logging.log4j.LogManager;
+&nbsp;import org.apache.logging.log4j.Logger;
+&nbsp;
+&nbsp;import java.sql.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="fc">&nbsp;public class DAO implements InterfaceDAO&lt;EmployeeDTO&gt; {</b>
+<b class="fc">&nbsp;    private static final Logger LOGGER = LogManager.getLogger(Main.class);</b>
+&nbsp;    private static final String selectAllEmployees = &quot;SELECT * FROM employees&quot;;
+&nbsp;
+&nbsp;    private static final String selectAnEmployee = &quot;SELECT * FROM employees WHERE id=?&quot;;
+&nbsp;
+&nbsp;    private static final String insertAnEmployee = &quot;INSERT INTO employees VALUES (?,?,?,?,?,?,?,?,?,?)&quot;;
+&nbsp;
+<b class="fc">&nbsp;    private static final Connection connection =ConnectionProvider.getConnection();</b>
+&nbsp;
+&nbsp;    public void batchInsert(List&lt;EmployeeDTO&gt; employeeDTO){
+<b class="fc">&nbsp;        try(PreparedStatement preparedStatement = connection.prepareStatement(insertAnEmployee)){</b>
+&nbsp;//            employeeDTO.forEach(emp -&gt; {
+&nbsp;//                try {
+&nbsp;//                    preparedStatement.setInt(1,emp.getId());
+&nbsp;//                    preparedStatement.setString(2,emp.getPrefix());
+&nbsp;//                    preparedStatement.setString(3,emp.getFirstName());
+&nbsp;//                    preparedStatement.setString(4,emp.getMiddleInitial());
+&nbsp;//                    preparedStatement.setString(5,emp.getLastName());
+&nbsp;//                    preparedStatement.setString(6,emp.getGender());
+&nbsp;//                    preparedStatement.setString(7,emp.getMail());
+&nbsp;//                    preparedStatement.setDate(8, Date.valueOf(emp.getDob())); //.toString() if not working
+&nbsp;//                    preparedStatement.setDate(9,Date.valueOf(emp.getStartDate()));    //same
+&nbsp;//                    preparedStatement.setDouble(10,emp.getSalary());
+&nbsp;//                    preparedStatement.addBatch();
+&nbsp;//                } catch (SQLException e) {
+&nbsp;//                    LOGGER.error(e.getMessage(), e);
+&nbsp;//                }
+&nbsp;//            } );
+&nbsp;//            preparedStatement.executeBatch();
+&nbsp;
+<b class="fc">&nbsp;            for(EmployeeDTO emp: employeeDTO){</b>
+<b class="fc">&nbsp;                preparedStatement.setInt(1,emp.getId());</b>
+<b class="fc">&nbsp;                preparedStatement.setString(2,emp.getPrefix());</b>
+<b class="fc">&nbsp;                preparedStatement.setString(3,emp.getFirstName());</b>
+<b class="fc">&nbsp;                preparedStatement.setString(4,emp.getMiddleInitial());</b>
+<b class="fc">&nbsp;                preparedStatement.setString(5,emp.getLastName());</b>
+<b class="fc">&nbsp;                preparedStatement.setString(6,emp.getGender());</b>
+<b class="fc">&nbsp;                preparedStatement.setString(7,emp.getMail());</b>
+&nbsp;
+<b class="fc">&nbsp;                preparedStatement.setDate(8, Date.valueOf(emp.getDob())); //.toString() if not working</b>
+<b class="nc">&nbsp;                preparedStatement.setDate(9,Date.valueOf(emp.getStartDate()));    //same</b>
+&nbsp;
+<b class="nc">&nbsp;                preparedStatement.setDouble(10,emp.getSalary());</b>
+<b class="nc">&nbsp;                preparedStatement.addBatch();</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            preparedStatement.executeBatch();</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            LOGGER.error(e.getMessage(), e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void  insert(EmployeeDTO employeeDTO) {
+&nbsp;
+<b class="fc">&nbsp;        try (PreparedStatement preparedStatement = connection.prepareStatement(insertAnEmployee)) {</b>
+&nbsp;
+<b class="fc">&nbsp;        preparedStatement.setInt(1,employeeDTO.getId());</b>
+<b class="fc">&nbsp;        preparedStatement.setString(2,employeeDTO.getPrefix());</b>
+<b class="fc">&nbsp;        preparedStatement.setString(3,employeeDTO.getFirstName());</b>
+<b class="fc">&nbsp;        preparedStatement.setString(4,employeeDTO.getMiddleInitial());</b>
+<b class="fc">&nbsp;        preparedStatement.setString(5,employeeDTO.getLastName());</b>
+<b class="fc">&nbsp;        preparedStatement.setString(6,employeeDTO.getGender());</b>
+<b class="fc">&nbsp;        preparedStatement.setString(7,employeeDTO.getMail());</b>
+<b class="fc">&nbsp;        preparedStatement.setDate(8, Date.valueOf(employeeDTO.getDob())); //.toString() if not working</b>
+<b class="nc">&nbsp;        preparedStatement.setDate(9,Date.valueOf(employeeDTO.getDob()));    //same</b>
+<b class="nc">&nbsp;        preparedStatement.setDouble(10,employeeDTO.getSalary());</b>
+<b class="nc">&nbsp;        preparedStatement.execute();</b>
+&nbsp;
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            LOGGER.error(e.getMessage(), e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public EmployeeDTO findById(int id) {
+<b class="fc">&nbsp;        EmployeeDTO employeeDTO = null;</b>
+<b class="fc">&nbsp;        try(PreparedStatement preparedStatement =connection.prepareStatement(selectAnEmployee)) {</b>
+&nbsp;
+<b class="fc">&nbsp;            preparedStatement.setInt(1, id);</b>
+<b class="fc">&nbsp;            ResultSet resultSet = preparedStatement.executeQuery();</b>
+<b class="nc">&nbsp;            if (resultSet != null &amp;&amp; resultSet.next()) {</b>
+<b class="nc">&nbsp;                employeeDTO = new EmployeeDTO(</b>
+<b class="nc">&nbsp;                        resultSet.getInt(1),</b>
+<b class="nc">&nbsp;                        resultSet.getString(2),</b>
+<b class="nc">&nbsp;                        resultSet.getString(3),</b>
+<b class="nc">&nbsp;                        resultSet.getString(4),</b>
+<b class="nc">&nbsp;                        resultSet.getString(5),</b>
+<b class="nc">&nbsp;                        resultSet.getString(6),</b>
+<b class="nc">&nbsp;                        resultSet.getString(7),</b>
+<b class="nc">&nbsp;                        resultSet.getDate(8).toLocalDate(),</b>
+<b class="nc">&nbsp;                        resultSet.getDate(9).toLocalDate(),</b>
+<b class="nc">&nbsp;                        resultSet.getDouble(10));</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;No records in the table.&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        } catch (SQLException e) {</b>
+<b class="fc">&nbsp;            LOGGER.error(e.getMessage(), e);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return employeeDTO;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;EmployeeDTO&gt; findAll() {
+<b class="fc">&nbsp;        List&lt;EmployeeDTO&gt; employees = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        try(PreparedStatement preparedStatement = connection.prepareStatement(selectAllEmployees)) {</b>
+<b class="fc">&nbsp;            ResultSet resultSet = preparedStatement.executeQuery(selectAllEmployees);</b>
+<b class="nc">&nbsp;            if (resultSet != null) {</b>
+<b class="nc">&nbsp;                while (resultSet.next()) {</b>
+<b class="nc">&nbsp;                    EmployeeDTO employee = new EmployeeDTO(</b>
+<b class="nc">&nbsp;                            resultSet.getInt(1),</b>
+<b class="nc">&nbsp;                            resultSet.getString(2),</b>
+<b class="nc">&nbsp;                            resultSet.getString(3),</b>
+<b class="nc">&nbsp;                            resultSet.getString(4),</b>
+<b class="nc">&nbsp;                            resultSet.getString(5),</b>
+<b class="nc">&nbsp;                            resultSet.getString(6),</b>
+<b class="nc">&nbsp;                            resultSet.getString(7),</b>
+<b class="nc">&nbsp;                            resultSet.getDate(8).toLocalDate(),</b>
+<b class="nc">&nbsp;                            resultSet.getDate(9).toLocalDate(),</b>
+<b class="nc">&nbsp;                            resultSet.getDouble(10));</b>
+&nbsp;
+<b class="nc">&nbsp;                    employees.add(employee);</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                System.out.println(&quot;No records in the table.&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        } catch (SQLException e) {</b>
+<b class="fc">&nbsp;            LOGGER.error(e.getMessage(), e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        return employees;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-13 10:50</div>
+</div>
+</body>
+</html>

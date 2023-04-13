@@ -1,0 +1,149 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > EmployeeStorage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.sparta.group2.model.storage</a>
+</div>
+
+<h1>Coverage Summary for Class: EmployeeStorage (com.sparta.group2.model.storage)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EmployeeStorage</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.sparta.group2.model.storage;
+&nbsp;
+&nbsp;import com.sparta.group2.controller.EmployeeStorageInterface;
+&nbsp;import com.sparta.group2.model.EmployeeDTO;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;
+&nbsp;public class EmployeeStorage implements EmployeeStorageInterface {
+&nbsp;  private static EmployeeStorage employeeStorage;
+&nbsp;  private static HashMap&lt;Integer, EmployeeDTO&gt; cleanList;
+&nbsp;  private static HashMap&lt;Integer, EmployeeDTO&gt; uncleanList;
+<b class="fc">&nbsp;  private EmployeeStorage(){</b>
+&nbsp;
+&nbsp;  }
+&nbsp;  //Singleton pattern
+&nbsp;  public static EmployeeStorage createEmployeeStorage() {
+<b class="fc">&nbsp;    if (employeeStorage == null) {</b>
+<b class="fc">&nbsp;      employeeStorage = new EmployeeStorage();</b>
+<b class="fc">&nbsp;      cleanList = new HashMap&lt;&gt;(100000);</b>
+<b class="fc">&nbsp;      uncleanList = new HashMap&lt;&gt;(100000);</b>
+<b class="fc">&nbsp;      return employeeStorage;</b>
+&nbsp;    }
+<b class="fc">&nbsp;    return employeeStorage;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public static EmployeeStorage getStorage() {
+<b class="fc">&nbsp;    return employeeStorage;</b>
+&nbsp;  }
+&nbsp;  @Override
+&nbsp;  public HashMap&lt;Integer, EmployeeDTO&gt; getCleanList() {
+<b class="fc">&nbsp;    return cleanList;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public HashMap&lt;Integer, EmployeeDTO&gt; getUncleanList() {
+<b class="fc">&nbsp;    return uncleanList;</b>
+&nbsp;  }
+&nbsp;  @Override
+&nbsp;  public void addCleanItem(EmployeeDTO item){
+<b class="fc">&nbsp;    cleanList.put(item.getId(), item);</b>
+&nbsp;  }
+&nbsp;  @Override
+&nbsp;  public void addUncleanItem(EmployeeDTO item){
+<b class="fc">&nbsp;    uncleanList.put(item.getId(), item);</b>
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-13 10:50</div>
+</div>
+</body>
+</html>
