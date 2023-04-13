@@ -50,11 +50,29 @@ public class SQLConnectionProviderChecks {
             assertTrue(connection == ConnectionProvider.getConnection());
         }
         @Test
-        void testConnectionSingleton(){
+        void testConnectionProviderSingleton(){
             ConnectionProvider connectionProvider = ConnectionProvider.createConnectionProvider();
-            ConnectionProvider connectionProvide2 = ConnectionProvider.createConnectionProvider();
+            ConnectionProvider connectionProvide2 = ConnectionProvider.getInstance();
             Assertions.assertEquals(connectionProvider,connectionProvide2);
+            Assertions.assertTrue(connectionProvider == connectionProvide2);
+            Assertions.assertTrue(connectionProvider.hashCode() == connectionProvide2.hashCode());
         }
+
+//        @Test
+//        void testConnectionProviderSetup(){
+//            ConnectionProvider connectionProvider = new ConnectionProvider();
+//            ConnectionProvider connectionProvider2 = new ConnectionProvider();
+//            Assertions.assertEquals(connectionProvider, connectionProvider2);
+//
+//        }
+//        @Test
+//        void testConnectionGetConnection() {
+//            ConnectionProvider cp1 = new ConnectionProvider();
+//            ConnectionProvider cp2 = new ConnectionProvider();
+//            Connection connectionProvider = cp1.getConnection();
+//            Connection connectionProvider2 = cp2.getConnection();
+//            Assertions.assertEquals(connectionProvider, connectionProvider2);
+//        }
 
         @Test
         void testDatabaseSetup() {

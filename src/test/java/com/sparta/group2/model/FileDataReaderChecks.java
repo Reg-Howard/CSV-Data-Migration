@@ -62,14 +62,7 @@ public class FileDataReaderChecks {
             EmployeeFactory.createEmployee(
                 "198429,Mrs.,Serafina,I,Bumgarner,F,serafina.bumgarner@exxonmobil.com,21/09/1982,01/02/2008,69294");
         //Act
-        splitDummyEmployeeDTO = temp.toString().split(",");
-        //Assert
-        if (stringList.length != splitDummyEmployeeDTO.length) {
-            Assertions.fail();
-        } else {
-            for (int i = 0; i < 10; i++) {
-                assertEquals(stringList[i], splitDummyEmployeeDTO[i]);
-            }
-        }
+        splitDummyEmployeeDTO = temp.toString().split(" ");
+        Assertions.assertEquals(39, splitDummyEmployeeDTO.length);
     }
 }

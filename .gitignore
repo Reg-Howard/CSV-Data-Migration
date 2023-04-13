@@ -25,3 +25,4 @@ hs_err_pid*
 ### Custom Additions###
 src/main/resources/login.properties
 src/main/resources/log4j2.properties
+README.md
