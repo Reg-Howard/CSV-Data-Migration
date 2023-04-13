@@ -112,18 +112,18 @@ public class EmployeeDTO {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return
-                "" + id +
-                "," + prefix +
-                "," + firstName +
-                "," + middleInitial +
-                "," + lastName +
-                "," + gender +
-                "," + mail +
-                "," + dob.format(formatter) +
-                "," + startDate.format(formatter) +
-                "," + (int)salary ;
+                "ID: " + id + " " +
+                "Prefix: " + prefix + " " +
+                "First Name: " + firstName + "  " +
+                "Middle Initial: " + middleInitial + "  " +
+                "Last Name: " + lastName + "    " +
+                "Gender: " + gender + " " +
+                "Email: " + mail + "    " +
+                "Date of Birth: " + dob.format(formatter) + "   " +
+                "Start Date: " + startDate.format(formatter) + "    " +
+                "Salary: " + (int)salary ;
     }
 
 

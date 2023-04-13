@@ -77,4 +77,8 @@ public class ConnectionProvider {
         }
         connection = null;
     }
+
+    public static ConnectionProvider getInstance(){
+        return connectionProvider;
+    }
 }
